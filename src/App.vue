@@ -5,24 +5,31 @@
     <button @click="setNewAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="user.firstName">
-      <input type="text" placeholder="Last Name" v-model="user.lastName">
+      <input type="text" placeholder="Last Name" ref="lastNameInput">
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
 
 <script setup>
 // import { ref } from 'vue';
-import { reactive, computed, watch } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 
 // const userName = ref('Nikola');
 // const userAge = ref(30);
+
+const lastNameInput = ref(null);
 
 const user = reactive({
   // userName: 'Nikola',
   userAge: 30,
   firstName: '',
-  lastName: ''
+  lastName: '',
 })
+
+function setLastName() {
+  user.lastName = lastNameInput.value.value;
+}
 
 // setTimeout(function () {
 //   // userName.value = 'Bogicevic';
