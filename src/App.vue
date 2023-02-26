@@ -12,7 +12,7 @@
 
 <script setup>
 // import { ref } from 'vue';
-import { reactive, computed } from 'vue'; // for objects only 
+import { reactive, computed, watch } from 'vue';
 
 // const userName = ref('Nikola');
 // const userAge = ref(30);
@@ -40,6 +40,11 @@ function setNewAge() {
 const uName = computed(function () {
   return user.firstName + " " + user.lastName;
 })
+
+watch(() => user.userAge, function (newValue, oldValue) {
+  console.log('Old age: ' + oldValue);
+  console.log('New age: ' + newValue);
+});
 </script>
 
 <style lang="scss">
@@ -62,6 +67,14 @@ body {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   text-align: center;
+  background-color: #cee4fc;
+
+  h2 {
+    min-height: 28px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #d3ffeb;
+  }
 
   button,
   a {
@@ -89,6 +102,26 @@ body {
     &:focus {
       outline: 2px solid webkit-focus-ring-color;
       outline-offset: -2px;
+    }
+  }
+
+  input {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font: inherit;
+
+    &:focus {
+      border-color: #42b883;
+      background-color: #d3ffeb;
+    }
+
+    &:focus-visible {
+      outline-color: #42b883 !important;
     }
   }
 }
